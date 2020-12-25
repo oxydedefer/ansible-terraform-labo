@@ -1,0 +1,20 @@
+---
+
+############################
+# terraform playbook       #
+############################
+
+- hosts: aws
+
+  strategy: linear
+  gather_facts: yes
+  become: yes
+
+  tasks:
+    - name: Install the latest httpd
+      package:
+        name:
+          - httpd
+
+  vars_files:
+    - "{{vault_file_path}}"

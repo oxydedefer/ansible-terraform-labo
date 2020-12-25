@@ -1,0 +1,50 @@
+---
+
+############################
+# terraform playbook       #
+############################
+
+- hosts: 127.0.0.1
+  connection: local
+  strategy: linear
+  gather_facts: no
+  roles:
+    - ansible.terraform.aws.ubuntu
+  tasks:
+
+#
+#    - name: show terra_result
+#      debug:
+#        var: terra_result
+
+#    - name: set vm_ip / name
+#      set_fact:
+#        vm_ip: "{{ terra_result.outputs.public_ip_labo.value }}"
+#        vm_ip_name: "{{ terra_result.outputs.name_labo.value }}"
+#      when:
+#        - terra_result.outputs.state_labo is defined
+#    - name: remove old dynamic host file
+#      file:
+#          path: inventories/TARGET/hosts
+#          state: absent
+#    - name: create new dynamic host file
+#      file:
+#          path: inventories/TARGET/hosts
+#          state: touch
+#    - name: set vm_ip / name
+#      set_fact:
+#          vm_ip: "50.101.144.185"
+#          vm_ip_name: "mock-labo"
+#
+#    - name: add retrieved IP to file
+#      blockinfile:
+#          path: "inventories/TARGET/hosts"
+#          marker: ""
+#          block: |
+#            [dynamic_web]
+#            {{ vm_ip }}
+#          state: present
+
+#
+#  vars_files:
+#    - "{{vault_file_path}}"
