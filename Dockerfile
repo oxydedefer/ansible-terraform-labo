@@ -24,7 +24,7 @@ RUN apk --update add --virtual \
         && mkdir /etc/ansible \
         && mkdir /home/.ssh \
         && mkdir /terraform \
-        && curl https://gist.githubusercontent.com/oxydedefer/96872191421c770079cd8722c8b3d7ad/raw/c1dc2dd818958922d48aed8d64ab21f17ba21b6f/ansible.cfg -o /etc/ansible/ansible.cfg \
+        && curl https://gist.githubusercontent.com/oxydedefer/96872191421c770079cd8722c8b3d7ad/raw/0d41258a2201e8c7e25b473348a617574e934c64/ansible.cfg -o /etc/ansible/ansible.cfg \
         && apk del \
         .build-deps \
         && rm -rf /var/cache/apk/*
