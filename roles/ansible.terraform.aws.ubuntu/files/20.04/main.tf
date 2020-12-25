@@ -9,7 +9,7 @@ provider "aws" {
 
 
 resource "aws_instance" "labo" {
-  ami           = "ami-0ce1e3f77cd41957e"
+  ami           = "ami-0aef57767f5404a3c"
   instance_type = "t2.micro"
   key_name      = "ssh-seb-labo"
   vpc_security_group_ids = ["sg-0c3c40c6b66eda713"]
