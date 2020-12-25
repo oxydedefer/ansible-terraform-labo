@@ -7,6 +7,7 @@
            name: ansible.terraform.aws
       vars:
            terraform_files_path: "{{path}}/files/20.04"
+           ssh_user: "{{ ssh_user_ubuntu }}"
 
 
 # tasks file for ansible.terraform.aws.ubuntu
