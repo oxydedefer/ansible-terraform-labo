@@ -1,0 +1,3 @@
+---
+  ubuntu_terraform_path : "{{ role_path }}/files/"
+# vars file for ansible.terraform.aws.ubuntu

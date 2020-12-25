@@ -1,0 +1,21 @@
+---
+- name: Copy Terraform file
+  copy:
+    src: "{{terraform_files_path}}/main.tf"
+    dest: "/terraform"
+
+    - name: init the terraform if .terraform is not there
+      shell: terraform init
+      args:
+        chdir: "/terraform
+        creates: "terraform/.terraform/"
+
+#    - name: Basic deploy of a service
+#      community.general.terraform:
+#        project_path: '{{ terraform_path }}/'
+#        state: present
+#        variables:
+#          access_key: "{{ access_key }}"
+#          secret_key: "{{ secret_key }}"
+#      register: terra_result
+# tasks file for ansible.terraform.aws
