@@ -4,18 +4,53 @@
     src: "{{terraform_files_path}}/main.tf"
     dest: "/terraform"
 
-    - name: init the terraform if .terraform is not there
-      shell: terraform init
-      args:
-        chdir: "/terraform
-        creates: "terraform/.terraform/"
+- name: init the terraform if .terraform is not there
+  shell: terraform init
+  args:
+    chdir: "/terraform"
+    creates: "terraform/.terraform/"
 
-#    - name: Basic deploy of a service
-#      community.general.terraform:
-#        project_path: '{{ terraform_path }}/'
-#        state: present
-#        variables:
-#          access_key: "{{ access_key }}"
-#          secret_key: "{{ secret_key }}"
-#      register: terra_result
+- name: Basic deploy of a service
+  community.general.terraform:
+    project_path: '/terraform'
+    state: present
+    variables:
+      access_key: "{{ access_key }}"
+      secret_key: "{{ secret_key }}"
+  register: terra_result
+
+- name: set vm_ip / name
+  set_fact:
+    vm_ip: "{{ terra_result.outputs.public_ip_labo.value }}"
+    vm_ip_name: "{{ terra_result.outputs.name_labo.value }}"
+  when:
+    - terra_result.outputs.state_labo is defined
+    -
+- name: remove old dynamic host file
+  file:
+      path: /tmp/hosts
+      state: absent
+- name: create new dynamic host file
+  file:
+      path: /tmp/hosts
+      state: touch
+
+- name: add retrieved IP to file
+  blockinfile:
+      path: "/tmp/hosts"
+      marker: ""
+      block: |
+        [aws]
+        {{ vm_ip }} ansible_user={{ ssh_user }} ansible_ssh_private_key_file={{ ansible_ssh_private_key_file }}
+      state: present
+
+- name: Wait 300 seconds for port 22 to become open and contains the string "OpenSSH"
+  wait_for:
+    port: 22
+    host: '{{ vm_ip }}'
+    search_regex: OpenSSH
+    delay: 10
+  vars:
+    ansible_connection: local
+  when: vm_ip is defined
 # tasks file for ansible.terraform.aws
