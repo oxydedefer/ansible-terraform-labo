@@ -11,26 +11,10 @@
            ssh_user: "{{ ssh_user_ubuntu }}"
       when: vm_version == "20.04"
 
-
-# tasks file for ansible.terraform.aws.ubuntu
-#    - name: remove old dynamic host file
-#      file:
-#          path: inventories/TARGET/hosts
-#          state: absent
-#    - name: create new dynamic host file
-#      file:
-#          path: inventories/TARGET/hosts
-#          state: touch
-#    - name: set vm_ip / name
-#      set_fact:
-#          vm_ip: "50.101.144.185sev"
-#          vm_ip_name: "mock-labo"
-#
-#    - name: add retrieved IP to file
-#      blockinfile:
-#          path: "inventories/TARGET/hosts"
-#          marker: ""
-#          block: |
-#            [dynamic_web]
-#            {{ vm_ip }}
-#          state: present
+    - name: Create ubuntu VM 18.04
+      include_role:
+        name: ansible.terraform.aws
+      vars:
+        terraform_files_path: "{{path}}/files/18.04"
+        ssh_user: "{{ ssh_user_ubuntu }}"
+      when: vm_version == "18.04"
