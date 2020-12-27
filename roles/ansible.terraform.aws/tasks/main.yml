@@ -17,6 +17,8 @@
     variables:
       access_key: "{{ access_key }}"
       secret_key: "{{ secret_key }}"
+      ssh_public_key: "{{ ssh_public_key }}"
+      vm_version: "{{ vm_version }}"
   register: terra_result
 
 - name: set vm_ip / name
