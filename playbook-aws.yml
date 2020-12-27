@@ -4,13 +4,13 @@
 # terraform playbook       #
 ############################
 
-- hosts: aws
+- hosts: localhost
   strategy: linear
   gather_facts: yes
   become: yes
 
   tasks:
-    - name: Install the latest apache2
+    - name: Install the latest "{{item}}"
       package:
-        name:
-          - apache2
+        name: "{{ apps }}"
+      loop: "{{ apps }}"
