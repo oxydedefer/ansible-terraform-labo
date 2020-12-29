@@ -21,6 +21,7 @@ RUN apk --update add --virtual \
         cffi \
         && pip3 install ansible==2.10.4 \
         mitogen \
+        boto3 \
         && mkdir /etc/ansible \
         && mkdir /home/.ssh \
         && mkdir /terraform \
