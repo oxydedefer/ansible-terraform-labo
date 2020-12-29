@@ -19,8 +19,8 @@ run:
 debug:
 	docker run --rm -ti -v $(ROOT_DIR):/app -v $(SSH_LOCATION):/home/.ssh $(NAME):latest sh
 
-test_alive:
-	docker run --rm -v $(ROOT_DIR):/app -v $(SSH_LOCATION):/home/.ssh $(NAME):latest bash -c "echo $(ANSIBLE_VAULT_PASSWORD) > /tmp/.vault_pass; ansible-playbook --vault-password-file /tmp/.vault_pass -i inventories/TARGET playbook_hosts_alive.yml"
+deploy_aws:
+	bash deploy-aws.sh
 
 edit_vault:
 	ansible-vault edit $(VAULT_PATH)
