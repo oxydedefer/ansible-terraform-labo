@@ -1,0 +1,4 @@
+- name: role_labo_docker
+  src: https://github.com/oxydedefer/role_labo_docker
+  version: master
+- src: undergreen.prometheus-node-exporter
