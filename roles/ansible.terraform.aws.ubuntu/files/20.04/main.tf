@@ -48,9 +48,9 @@ resource "aws_instance" "labo" {
   instance_type = "t2.micro"
   key_name      = "deployer-key"
 //  vpc_security_group_ids = [aws_security_group.labo.id]
-  vpc_security_group_ids = ['sg-0095033037ad91574']
+  vpc_security_group_ids = ["sg-0095033037ad91574"]
   tags = {
-    Name = "Labo-ubuntu-${var.vm_version} "
+    Name = "Labo-ubuntu-${var.vm_version}"
   }
 }
 
