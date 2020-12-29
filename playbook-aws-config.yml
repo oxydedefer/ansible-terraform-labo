@@ -12,5 +12,5 @@
   tasks:
     - name: Install the latest "{{item}}"
       package:
-        name: "{{ apps }}"
+        name: "{{ item }}"
       loop: "{{ apps }}"
