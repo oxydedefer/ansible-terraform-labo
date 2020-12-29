@@ -1,0 +1,20 @@
+- hosts: 127.0.0.1
+  connection: local
+  strategy: linear
+  gather_facts: no
+  tasks:
+    - name: try creating a key pair with name of an already existing keypair
+      amazon.aws.ec2_key:
+        name: deployer-key2
+        access_key: "{{ access_key }}"
+        secret_key: "{{ secret_key }}"
+        key_material: "{{ ssh_public_key }}"
+        region: 'eu-west-1'
+        force: false
+      register: result
+
+    - debug:
+        msg: "{{ result.changed }}"
+
+  vars_files:
+    - "{{vault_file_path}}"
