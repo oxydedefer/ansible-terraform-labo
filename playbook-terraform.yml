@@ -13,7 +13,7 @@
   roles:
     - role: ansible.terraform.aws.ubuntu
       vars:
-        vm_version: "20.04"
+        vm_version: "{{ version }}"
 
   vars_files:
     - "{{vault_file_path}}"
