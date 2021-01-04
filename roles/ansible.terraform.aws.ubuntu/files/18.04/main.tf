@@ -9,10 +9,10 @@ provider "aws" {
   secret_key = var.secret_key
 }
 
-resource "aws_key_pair" "deployer" {
-  key_name   = "deployer-key"
-  public_key = var.ssh_public_key
-}
+//resource "aws_key_pair" "deployer" {
+//  key_name   = "deployer-key"
+//  public_key = var.ssh_public_key
+//}
 
 //resource "aws_security_group" "labo" {
 //  name = "generate-security-terraform"
