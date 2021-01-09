@@ -11,7 +11,7 @@
     creates: "terraform/.terraform/"
 
 - name: Basic deploy of a service
-  community.general.terraform:
+  terraform:
     project_path: '/terraform'
     state: present
     variables:
