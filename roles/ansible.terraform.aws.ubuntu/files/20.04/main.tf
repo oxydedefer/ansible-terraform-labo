@@ -15,7 +15,7 @@ resource "random_string" "random" {
 
 }
 resource "aws_key_pair" "deployer" {
-  key_name   = "${random_string.random.result}"
+  key_name   = "labo-key-pair-${random_string.random.result}"
   public_key = var.ssh_public_key
 }
 
@@ -62,7 +62,7 @@ resource "aws_instance" "labo" {
   vpc_security_group_ids = [aws_security_group.labo.id]
 //  vpc_security_group_ids = ["sg-0095033037ad91574"]
   tags = {
-    Name = "Labo-ubuntu-${var.vm_version}"
+    Name = "Labo-ubuntu-${var.vm_version}-${random_string.random.result}"
   }
 }
 
