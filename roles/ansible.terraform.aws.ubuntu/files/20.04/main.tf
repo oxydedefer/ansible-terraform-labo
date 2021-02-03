@@ -1,7 +1,19 @@
-variable "access_key" {}
-variable "secret_key" {}
-variable "ssh_public_key" {}
-variable "vm_version" {}
+variable "access_key" {
+  type = string
+  sensitive = true
+}
+variable "secret_key" {
+  type = string
+  sensitive = true
+}
+variable "ssh_public_key" {
+  type = string
+  sensitive = true
+}
+variable "vm_version" {
+  type = string
+  sensitive = false
+}
 
 provider "aws" {
   region = "eu-west-1"
