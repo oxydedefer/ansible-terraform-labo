@@ -1,8 +1,8 @@
-FROM alpine:3.12
+FROM alpine:3.13.2
 RUN apk --update --no-cache add \
         git \
-        terraform=0.12.25-r0 \
-        ansible=2.9.14-r0 \
+        terraform \
+        ansible\
         && apk add --virtual .build-deps \
         py3-pip \
         curl \
