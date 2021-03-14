@@ -1,0 +1,20 @@
+---
+
+    - set_fact:
+        path: "{{role_path}}"
+
+    - name: Create ubuntu VM 20.04
+      include_role:
+           name: ansible.terraform.aws
+      vars:
+           terraform_files_path: "{{path}}/files/20.04"
+           ssh_user: "{{ ssh_user_ubuntu }}"
+      when: vm_version == "20.04"
+
+    - name: Create ubuntu VM 18.04
+      include_role:
+        name: ansible.terraform.aws
+      vars:
+        terraform_files_path: "{{path}}/files/18.04"
+        ssh_user: "{{ ssh_user_ubuntu }}"
+      when: vm_version == "18.04"

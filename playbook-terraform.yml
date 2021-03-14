@@ -1,0 +1,19 @@
+---
+
+############################
+# terraform playbook       #
+############################
+
+- hosts: 127.0.0.1
+  connection: local
+  strategy: linear
+  gather_facts: no
+  tasks:
+
+  roles:
+    - role: ansible.terraform.aws.ubuntu
+      vars:
+        vm_version: "{{ version }}"
+
+  vars_files:
+    - "{{vault_file_path}}"
